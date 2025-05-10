@@ -1,7 +1,7 @@
 import {FONT_FAMILY} from 'bases/styles/Core';
 import React, {Component} from 'react';
 import {View, StyleSheet, Text, Linking, ScrollView} from 'react-native';
-import deviceInfoModule from 'react-native-device-info';
+// import deviceInfoModule from 'react-native-device-info';
 import {ReactNativeModal} from 'react-native-modal';
 import Utilities from '../../../../utils/Utilities';
 
@@ -46,10 +46,10 @@ export default class SupportOSModal extends Component<{}, IState> {
               <Text style={styles.txt}>
                 Rất xin lỗi bạn vì phiên bản hệ điều hành của bạn không được hỗ trợ
               </Text>
-              <Text style={[styles.txt, {marginTop: 10}]}>
+              {/* <Text style={[styles.txt, {marginTop: 10}]}>
                 Số phiên bản hệ điều hành của bạn là: {Utilities.isAndroid() ? 'Android ' : 'iOS '}
                 {deviceInfoModule.getSystemVersion()}
-              </Text>
+              </Text> */}
               {this.state.content ? (
                 <Text style={styles.txtContent}>{this.state.content}</Text>
               ) : null}

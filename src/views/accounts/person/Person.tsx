@@ -26,7 +26,7 @@ import MyButtonSvg from 'bases/components/button/MyButtonSvg';
 import {MyButtonNext} from 'bases/components';
 import MyTheme from 'utils/MyTheme';
 import {SCREEN} from 'views/router/type';
-import deviceInfoModule from 'react-native-device-info';
+// import deviceInfoModule from 'react-native-device-info';
 
 interface defaultProps extends IPersonState {
   initUser: typeof initUser;
@@ -299,10 +299,10 @@ class Person extends PureComponent<defaultProps> {
             ]}
           />
 
-          <MyText style={personStyles.version}>
+          {/* <MyText style={personStyles.version}>
             v{deviceInfoModule.getVersion()}
             {' (' + MyStaticLocal.version_of_codepush + ')'}
-          </MyText>
+          </MyText> */}
         </ScrollView>
       </MyView>
     );
