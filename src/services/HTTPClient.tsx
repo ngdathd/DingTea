@@ -8,7 +8,6 @@ import {
 } from 'common/KeyStorages';
 import {ITokenModel} from 'models';
 import {Alert} from 'react-native';
-// import deviceInfoModule from 'react-native-device-info';
 import {IResponse} from 'services';
 import MyNavigator from 'utils/MyNavigator';
 import MyStaticLocal from 'utils/MyStaticLocal';
@@ -20,8 +19,7 @@ const instance = axios.create({
   timeout: 60000,
   headers: {
     'Content-Type': 'application/json',
-    // 'User-Agent': deviceInfoModule.getUserAgentSync()
-    'User-Agent': "Mozilla/5.0"
+    'User-Agent': 'Mozilla/5.0'
   }
 });
 

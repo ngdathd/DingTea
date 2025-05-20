@@ -1,9 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, TextProps} from 'react-native';
-
-import {TextMask, TextInputMaskProps} from 'react-native-masked-text';
-
-import {PRICE_MASK} from 'common/Constants';
 import {FONT_FAMILY, FONT_SIZE} from 'bases/styles/Core';
 import MyTheme from 'utils/MyTheme';
 
@@ -36,48 +32,35 @@ export const MyText = (props: IPropsMyText) => {
   );
 };
 
-interface IPropsMask extends Omit<Partial<TextInputMaskProps>, 'children'>, IPropsMyText {
+interface IPropsMask {
   text: number | 0;
   currency?: 'VND' | 'USD';
 }
+
+interface MyTextPriceMaskProps extends TextProps, IPropsMask {}
+
+const formatMoney = (value: number, currency: 'VND' | 'USD' = 'VND') => {
+  return new Intl.NumberFormat(currency === 'VND' ? 'vi-VN' : 'en-US', {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 0
+  }).format(value);
+};
 
 /**
  ** TextSize default '14'
  ** FontFamily default 'Medium'
  ** currency default 'VND'
  */
-export const MyTextPriceMask = (props: IPropsMask) => {
-  const {text, currency, fontStyle, style} = props;
-  let money = String(text);
-  let option = null;
-  if (currency && currency !== 'VND') {
-    /* cau hinh don vi sau dau phay la 2 ~ 100, 3 ~ 1000 */
-    money = String(text * 100);
-    option = PRICE_MASK[currency];
-  } else {
-    option = PRICE_MASK.VND;
-  }
-  let textStyle = {};
-  if (fontStyle) {
-    textStyle = {
-      fontFamily: FONT_FAMILY[fontStyle]
-    };
-  } else {
-    textStyle = {
-      fontFamily: FONT_FAMILY.Medium
-    };
-  }
-
+export const MyTextPriceMask: React.FC<MyTextPriceMaskProps> = ({
+  text,
+  currency = 'VND',
+  ...props
+}) => {
   return (
-    <TextMask
-      {...props}
-      numberOfLines={1}
-      allowFontScaling={false}
-      value={money}
-      style={[styles.text, style, textStyle]}
-      type="money"
-      options={option}
-    />
+    <Text {...props}>
+      {formatMoney(text, currency)}
+    </Text>
   );
 };
 
