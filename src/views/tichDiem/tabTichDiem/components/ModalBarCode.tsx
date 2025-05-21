@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Modal, ScrollView} from 'react-native';
 
-import Barcode from 'react-native-barcode-svg';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {MyButtonShadow, MyView, MyText, MyImage} from 'bases/components';
@@ -53,7 +52,7 @@ class ModalBarCode extends PureComponent<IProps, IStates> {
               onPress={this.onHide}
               activeOpacity={1}
               style={stylesModal.modalContainer}>
-              <MyView style={stylesModal.viewQACode}>
+              {/* <MyView style={stylesModal.viewQACode}>
                 <Barcode
                   height={100}
                   maxWidth={Utilities.getWidthScreen() * 0.8}
@@ -63,7 +62,7 @@ class ModalBarCode extends PureComponent<IProps, IStates> {
                 <MyText fontStyle="SemiBold" style={tabtichDiemStyle.txtName}>
                   {name} - {id}
                 </MyText>
-              </MyView>
+              </MyView> */}
               <MyView style={stylesModal.viewHeaderContainer}>
                 <SvgCss
                   xml={Utilities.getSvgBackground(

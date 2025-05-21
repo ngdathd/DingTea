@@ -10,7 +10,7 @@ import {cmtShop} from './style/CmtShop.Style';
 import MyNavigator from 'utils/MyNavigator';
 import ChooseAddressShop from 'views/cartPay/components/ChooseAddressShop';
 import Utilities from 'utils/Utilities';
-import {MyViewShadow, MyText, MyInput, MyButtonText, MyPickImageList} from 'bases/components';
+import {MyViewShadow, MyText, MyInput, MyButtonText} from 'bases/components';
 import {IAddressShopState} from 'views/addressShop/redux';
 import {IPersonState} from 'views/accounts/person/redux';
 import validate from 'validator';
@@ -162,18 +162,6 @@ class CmtShop extends PureComponent<defaultProps> {
             onChangeText={text => {
               this.txtCmtShop = text;
             }}
-          />
-          <MyText fontStyle="SemiBold" style={cmtShop.txtNote}>
-            {MyI18n.trans.attached_photo}
-          </MyText>
-          <MyPickImageList
-            titleDialog={MyI18n.trans.pictures_of_the_product}
-            titleCamera={MyI18n.trans.take_photo}
-            titleGallery={MyI18n.trans.pick_image}
-            titleCancel={MyI18n.trans.cancel}
-            style={cmtShop.viewImage}
-            maxFiles={3}
-            onGetListImage={this.onGetListImage}
           />
           <MyButtonText
             title={MyI18n.trans.evaluate}

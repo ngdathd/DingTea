@@ -9,8 +9,7 @@ import {
   MyText,
   Rating,
   MyInput,
-  MyButtonText,
-  MyPickImageList
+  MyButtonText
 } from 'bases/components';
 import {cmtProduct} from '../style/OrderDetail.Style';
 import {ICartModel, IResponseImageModel} from 'models';
@@ -157,16 +156,6 @@ export default class ModalCmtProduct extends PureComponent<defaultProps, IStates
                     onChangeText={(text: string) => {
                       this.textCmt = text;
                     }}
-                  />
-                  <MyText fontStyle="SemiBold">{MyI18n.trans.attached_photo}</MyText>
-                  <MyPickImageList
-                    titleDialog={MyI18n.trans.pictures_of_the_product}
-                    titleCamera={MyI18n.trans.take_photo}
-                    titleGallery={MyI18n.trans.pick_image}
-                    titleCancel={MyI18n.trans.cancel}
-                    style={cmtProduct.viewImage}
-                    maxFiles={3}
-                    onGetListImage={this.onGetListImage}
                   />
                   <MyButtonText
                     style={cmtProduct.bntPreview}

@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Modal} from 'react-native';
 
-import QRCode from 'react-native-qrcode-svg';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {MyButtonIcon, MyToolbar, MyButtonShadow} from 'bases/components';
@@ -56,7 +55,7 @@ export default class ModalQrCode extends PureComponent<IProps, IStates> {
               }}
               style={stylesModal.iconClose}
             />
-            <QRCode size={Utilities.getWidthScreen() * 0.5} value={value} />
+            {/* <QRCode size={Utilities.getWidthScreen() * 0.5} value={value} /> */}
           </MyButtonShadow>
         </SafeAreaView>
       </Modal>

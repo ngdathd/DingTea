@@ -1,6 +1,5 @@
 import React from 'react';
 import {TextStyle, TouchableOpacity, TouchableOpacityProps, StyleSheet} from 'react-native';
-import {IconProps} from 'react-native-vector-icons/Icon';
 
 import {LAYOUT, RADIUS, setRadius, FONT_FAMILY, FONT_SIZE, setShadow} from '../../styles/Core';
 import {MyText, IPropsMyText} from '../textview';
@@ -84,7 +83,7 @@ export const MyButtonTextBorder = (props: IPropsMyButtonText) => {
 
 interface IPropsMyButtonIcon extends TouchableOpacityProps {
   iconFontType: FontType;
-  iconProps: IconProps;
+  iconProps: any;
 }
 
 /**

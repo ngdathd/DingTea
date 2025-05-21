@@ -141,7 +141,7 @@ class Person extends PureComponent<defaultProps> {
       if (avatar) {
         renderViewAvatar = (
           <MyImage
-            source={Utilities.convertLinkImage(avatar)}
+            source={Utilities.convertLinkImage(avatar, 'MEDIUM')}
             style={personStyles.imgAvatar}
             width={personStyles.imageAvatar.width}
             height={personStyles.imageAvatar.width}

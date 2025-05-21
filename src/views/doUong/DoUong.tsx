@@ -32,10 +32,6 @@ import CategoryHeader from './components/CategoryHeader';
 import MyTheme from 'utils/MyTheme';
 import {LAYOUT} from 'bases/styles/Core';
 import Utilities from 'utils/Utilities';
-import Geolocation from 'react-native-geolocation-service';
-import {COORDINATE_USER} from 'common/KeyStorages';
-import MyStorage from 'utils/MyStorage';
-import MyStaticLocal from 'utils/MyStaticLocal';
 
 const HEADER_COLOR_0 = 0;
 const HEADER_COLOR_1 = Utilities.getResolutionByHeight(140);
@@ -82,103 +78,6 @@ class DoUong extends PureComponent<IProps> {
   componentWillUnmount() {
     this.valueScroolY.removeAllListeners();
   }
-
-  hasPermissionIOS = async () => {
-    const openSetting = () => {
-      Linking.openSettings().catch(() => {
-        Alert.alert('Unable to open settings');
-      });
-    };
-    const status = await Geolocation.requestAuthorization('whenInUse');
-
-    if (status === 'granted') {
-      return true;
-    }
-
-    if (status === 'denied') {
-      Alert.alert('Location permission denied');
-    }
-
-    if (status === 'disabled') {
-      Alert.alert('Vui lòng bật định vị GPS và cho phép DingTea sử dụng dịch vụ vị trí.', '', [
-        {text: 'Đi cài đặt', onPress: openSetting},
-        {text: 'Không cho phép', onPress: () => {}}
-      ]);
-    }
-
-    return false;
-  };
-
-  hasLocationPermission = async () => {
-    if (Platform.OS === 'ios') {
-      const hasPermission = await this.hasPermissionIOS();
-      return hasPermission;
-    }
-
-    if (Platform.OS === 'android' && Platform.Version < 23) {
-      return true;
-    }
-
-    const hasPermission = await PermissionsAndroid.check(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
-
-    if (hasPermission) {
-      return true;
-    }
-
-    const status = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
-
-    if (status === PermissionsAndroid.RESULTS.GRANTED) {
-      return true;
-    }
-
-    if (status === PermissionsAndroid.RESULTS.DENIED) {
-      Utilities.showToast('Location permission denied by user.');
-    } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-      Utilities.showToast('Location permission revoked by user.');
-    }
-
-    return false;
-  };
-
-  getLocation = async () => {
-    const hasPermission = await this.hasLocationPermission();
-
-    if (!hasPermission) {
-      return;
-    }
-
-    Geolocation.getCurrentPosition(
-      position => {
-        let coordinate = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
-        console.log(coordinate);
-        MyStorage.create(COORDINATE_USER, coordinate);
-        MyStaticLocal.setCoordinate(coordinate.latitude, coordinate.longitude);
-      },
-      error => {
-        Alert.alert(`Code ${error.code}`, error.message);
-        console.log(error);
-      },
-      {
-        accuracy: {
-          android: 'high',
-          ios: 'best'
-        },
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 10000,
-        distanceFilter: 0,
-        forceRequestLocation: true,
-        showLocationDialog: true
-      }
-    );
-  };
 
   onScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const {data} = this.props;

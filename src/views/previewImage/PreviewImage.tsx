@@ -1,14 +1,12 @@
 import React, {createRef, PureComponent} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 
-import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
-import FastImage from 'react-native-fast-image';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import Utilities from 'utils/Utilities';
 import {COLOR, FONT_SIZE, LAYOUT, MARGIN} from 'bases/styles/Core';
 import MyNavigator from 'utils/MyNavigator';
-import {MyView, MyButtonIcon, MyText} from 'bases/components';
+import {MyView, MyButtonIcon, MyText, MyImage} from 'bases/components';
 
 interface IProps {
   route?: any;
@@ -53,16 +51,11 @@ export default class PreviewImage extends PureComponent<IProps, IState> {
   renderZoomImage = ({item}: any) => {
     const source = Utilities.convertLinkImage(item, 'HIGH');
     return (
-      <ReactNativeZoomableView
-        zoomEnabled
-        minZoom={1}
-        doubleTapDelay={200}
-        initialZoom={1}
-        bindToBorders
-        onZoomAfter={this.inZoom}
-        onDoubleTapAfter={this.inZoom}>
-        <FastImage source={source} style={styles.itemImage} resizeMode="contain" />
-      </ReactNativeZoomableView>
+      <MyImage 
+        source={source} 
+        width={Utilities.getWidthScreen()} 
+        height={Utilities.getHeightScreen()}
+      />
     );
   };
 

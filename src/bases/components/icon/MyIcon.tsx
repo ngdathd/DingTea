@@ -1,21 +1,23 @@
 import React from 'react';
 import {View} from 'react-native';
+import {
+  AntDesign,
+  Entypo,
+  EvilIcons,
+  Feather,
+  FontAwesome,
+  FontAwesome5,
+  Fontisto,
+  Foundation,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+  SimpleLineIcons,
+  Zocial
+} from '@expo/vector-icons';
 
-import {IconProps} from 'react-native-vector-icons/Icon';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import Foundation from 'react-native-vector-icons/Foundation';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Octicons from 'react-native-vector-icons/Octicons';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import Zocial from 'react-native-vector-icons/Zocial';
+import type {IconProps} from '@expo/vector-icons/build/createIconSet';
 
 export type FontType =
   | 'Ionicons'
@@ -33,12 +35,12 @@ export type FontType =
   | 'SimpleLineIcons'
   | 'Zocial';
 
-interface IProps extends IconProps {
+interface IProps extends IconProps<any> {
   iconFontType: FontType;
 }
 
 export const MyIcon = (props: IProps) => {
-  const {iconFontType} = props;
+  const { iconFontType } = props;
   switch (iconFontType) {
     case 'Ionicons':
       return <Ionicons {...props} />;

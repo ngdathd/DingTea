@@ -1,7 +1,6 @@
 import {FONT_SIZE, PADDING, setPadding} from 'bases/styles/Core';
 import React, {PureComponent} from 'react';
 import {StyleSheet, TextStyle, TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {IconProps} from 'react-native-vector-icons/Icon';
 import {FontType, MyIcon} from '../icon';
 import {MyText} from '../textview';
 
@@ -10,7 +9,7 @@ interface IProps extends TouchableOpacityProps {
   titleFontStyle?: 'Regular' | 'Medium' | 'Bold' | 'SemiBold';
   titleStyle?: TextStyle;
   iconFontType: FontType;
-  iconProps: IconProps;
+  iconProps: any;
   onPress?: () => void;
 }
 

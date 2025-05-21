@@ -1,6 +1,5 @@
 import React, {createRef, PureComponent} from 'react';
 import {Animated, FlatList, StyleSheet, ViewStyle} from 'react-native';
-import {ImageStyle} from 'react-native-fast-image';
 
 import {MyView} from '../view';
 import {LAYOUT, setRadius, setMargin, RADIUS, MARGIN} from '../../styles/Core';
@@ -16,7 +15,7 @@ const DOT_WIDTH = LAYOUT.l_10;
 interface IProps {
   style?: ViewStyle;
   styleContainerImage?: ViewStyle;
-  styleImage?: ImageStyle;
+  styleImage?: any;
   widthImage: number;
   ratio?: number;
   styleBar?: ViewStyle;

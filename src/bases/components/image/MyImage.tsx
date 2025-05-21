@@ -1,25 +1,18 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import FastImage, {FastImageProps} from 'react-native-fast-image';
+import {StyleSheet, Image} from 'react-native';
 
 import {RADIUS, setRadius} from '../../styles/Core';
 
-interface IProps extends FastImageProps {
-  width: number | string;
-  height?: number | string;
-  children?: any | null;
-}
-
-export const MyImage = (props: IProps) => {
+export const MyImage = (props: any) => {
   const {children, style, width, height} = props;
 
   return (
-    <FastImage
+    <Image
       resizeMode="contain"
       {...props}
       style={[styles.image, style, {width: width, height: height}]}>
       {children}
-    </FastImage>
+    </Image>
   );
 };
 

@@ -1,4 +1,4 @@
-import {MyButton, MyDatePicker, MyText, MyView, MyViewShadow} from 'bases/components';
+import {MyButton, MyText, MyView, MyViewShadow} from 'bases/components';
 import React, {createRef, PureComponent} from 'react';
 import {KeyboardAvoidingView, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
@@ -120,12 +120,6 @@ class InforPerson extends PureComponent<defaultProps, IAppState> {
                     {phone || newName}
                   </MyText>
                 </MyButton>
-                <MyText fontStyle="SemiBold">{MyI18n.trans.birthday}</MyText>
-                <MyButton onPress={this.onPressBirthDay} style={inforPersonStyle.viewinput}>
-                  <MyText style={inforPersonStyle.txtBirthday} fontStyle="SemiBold">
-                    {Utilities.convertTimeByFormat(newDate || birthday, 'DD/MM/YYYY')}
-                  </MyText>
-                </MyButton>
               </MyView>
               {/* <MyButtonText
                 title={MyI18n.trans.update}
@@ -136,14 +130,6 @@ class InforPerson extends PureComponent<defaultProps, IAppState> {
             </MyViewShadow>
           </ScrollView>
         </KeyboardAvoidingView>
-        <MyDatePicker
-          ref={this.showModalBirthdayRef}
-          title={MyI18n.trans.choose_birthday}
-          titleButtonChange={MyI18n.trans.ok}
-          titleButtonCancel={MyI18n.trans.cancel}
-          onChange={this.handleToSelectedDate}
-          value={newDate || time}
-        />
         <ModalChangeName
           value={MyStaticLocal.getUser()?.name || ''}
           ref={this.showModalNameRef}

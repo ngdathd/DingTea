@@ -93,10 +93,6 @@ class CartPaySuccess extends PureComponent<IProps> {
     MyNavigator.navigate('HomeRouter', {screen:'HomeTab'});
   };
 
-  goPayment = () => {
-    MyNavigator.navigate('Payment', {orderDetail: this.orderSucess});
-  };
-
   render() {
     let _viewDiscount = null;
     if (this.orderSucess && this.orderSucess.discounts && this.orderSucess.discounts.length > 0) {
@@ -259,30 +255,12 @@ class CartPaySuccess extends PureComponent<IProps> {
           </MyViewShadow>
         </ScrollView>
         <SafeAreaView edges={['bottom']} style={cartSuccessStyles.safeView}>
-          {this.orderSucess.payment?.name === 'Chuyển khoản' ? (
-            <MyView style={cartSuccessStyles.viewPay} transparent>
-              <MyButtonTextBorder
-                title={MyI18n.trans.go_home}
-                style={cartSuccessStyles.buttonGoHome}
-                titleStyle={cartSuccessStyles.titleGoHome}
-                titleProps={{fontStyle: 'SemiBold'}}
-                onPress={this.goHome}
-              />
-              <MyButtonText
-                title={MyI18n.trans.payment}
-                style={cartSuccessStyles.buttonViewPay}
-                titleProps={{fontStyle: 'SemiBold'}}
-                onPress={this.goPayment}
-              />
-            </MyView>
-          ) : (
-            <MyButtonText
-              title={MyI18n.trans.go_home}
-              style={cartSuccessStyles.bottomButton}
-              titleProps={{fontStyle: 'SemiBold'}}
-              onPress={this.goHome}
-            />
-          )}
+          <MyButtonText
+            title={MyI18n.trans.go_home}
+            style={cartSuccessStyles.bottomButton}
+            titleProps={{fontStyle: 'SemiBold'}}
+            onPress={this.goHome}
+          />
         </SafeAreaView>
       </MyView>
     );

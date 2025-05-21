@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Modal} from 'react-native';
 
-import Barcode from 'react-native-barcode-svg';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {MyButtonIcon, MyToolbar, MyButtonShadow} from 'bases/components';
@@ -56,12 +55,12 @@ export default class ModalBarCode extends PureComponent<IProps, IStates> {
               }}
               style={stylesModal.iconClose}
             />
-            <Barcode
+            {/* <Barcode
               height={80}
               maxWidth={Utilities.getWidthScreen() * 0.8}
               value={value}
               format="CODE128"
-            />
+            /> */}
           </MyButtonShadow>
         </SafeAreaView>
       </Modal>

@@ -2,7 +2,6 @@ import {svgRank} from 'assets/images/svgImage';
 import {MyButton, MyText, MyView, MyViewShadow} from 'bases/components';
 import ProgressBar from 'bases/components/progressbar/ProgressBar';
 import React, {PureComponent} from 'react';
-import Barcode from 'react-native-barcode-svg';
 import {SvgCss} from 'react-native-svg/css';
 import {connect} from 'react-redux';
 import MyI18n from 'utils/MyI18n';
@@ -32,7 +31,7 @@ class HeaderTichDiem extends PureComponent<defaultProps> {
           xml={Utilities.getSvgBackground(Utilities.getResolutionByWidth(375))}
           style={tabtichDiemStyle.background}
         />
-        <MyButton style={tabtichDiemStyle.viewQACode}>
+        {/* <MyButton style={tabtichDiemStyle.viewQACode}>
           <Barcode
             height={74}
             maxWidth={Utilities.getWidthScreen() * 0.6}
@@ -42,7 +41,7 @@ class HeaderTichDiem extends PureComponent<defaultProps> {
           <MyText fontStyle="SemiBold" style={tabtichDiemStyle.txtName}>
             {name} - {id}
           </MyText>
-        </MyButton>
+        </MyButton> */}
         <MyView style={tabtichDiemStyle.viewBody}>
           <MyView style={tabtichDiemStyle.viewHolder} />
           <MyViewShadow style={tabtichDiemStyle.viewPoint}>

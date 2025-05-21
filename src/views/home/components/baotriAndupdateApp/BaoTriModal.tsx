@@ -61,15 +61,6 @@ export default class BaoTriModal extends Component<{}, IState> {
                   1900 2003
                 </Text>
               </Text>
-              <Text style={styles.txt}>
-                Email:{' '}
-                <Text
-                  style={{color: 'blue', textDecorationLine: 'underline'}}
-                  onPress={() => {
-                    // Linking.openURL('mailto:cskh@cocolux.com');
-                  }}
-                />
-              </Text>
             </View>
           </ScrollView>
         </View>

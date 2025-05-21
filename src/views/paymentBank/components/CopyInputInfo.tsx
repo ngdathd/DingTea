@@ -3,7 +3,6 @@ import React, {PureComponent} from 'react';
 import {MyButtonText, MyText, MyView} from 'bases/components';
 import {copyInputStyles} from '../style/PaymentBank.Style';
 import Utilities from 'utils/Utilities';
-import Clipboard from '@react-native-clipboard/clipboard';
 import MyI18n from 'utils/MyI18n';
 
 interface IProps {
@@ -15,7 +14,7 @@ export default class CopyInputInfo extends PureComponent<IProps> {
   copy = () => {
     const {title, content} = this.props;
     Utilities.showToast(MyI18n.trans.successfully_copied + ' ' + title);
-    Clipboard.setString(String(content));
+    // Clipboard.setString(String(content));
   };
 
   render() {

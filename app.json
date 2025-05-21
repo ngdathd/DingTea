@@ -1,4 +1,10 @@
 {
   "name": "DingTea",
-  "displayName": "DingTea"
+  "displayName": "DingTea",
+  "expo": {
+    "name": "DingTea",
+    "slug": "dingtea",
+    "entryPoint": "./App.tsx",
+    "newArchEnabled": true
+  }
 }

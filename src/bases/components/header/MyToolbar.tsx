@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, TouchableOpacityProps, TextProps, TextStyle, ViewStyle} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {IconProps} from 'react-native-vector-icons/Icon';
 
 import {MyText} from '../textview';
 import {MyView} from '../view';
@@ -17,7 +16,7 @@ import MyTheme from 'utils/MyTheme';
 interface IToolbarProps {
   isShowBtnLeft?: boolean;
   iconLeftFontType?: FontType;
-  iconLeftProps?: IconProps;
+  iconLeftProps?: any;
   onPressLeft?: () => void;
   buttonLeftProps?: TouchableOpacityProps;
 
@@ -28,11 +27,11 @@ interface IToolbarProps {
 
   isShowIconTitle?: boolean;
   iconTitleFontType?: FontType;
-  iconTitleProps?: IconProps;
+  iconTitleProps?: any;
 
   isShowBtnRight?: boolean;
   iconRightFontType?: FontType;
-  iconRightProps?: IconProps;
+  iconRightProps?: any;
   onPressRight?: () => void;
   buttonRightProps?: TouchableOpacityProps;
 

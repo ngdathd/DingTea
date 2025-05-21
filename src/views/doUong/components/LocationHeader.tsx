@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, Alert, Platform, Linking, PermissionsAndroid} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {connect} from 'react-redux';
 import MyI18n from 'utils/MyI18n';
@@ -23,10 +23,6 @@ import MyStaticLocal from 'utils/MyStaticLocal';
 import MyTheme from 'utils/MyTheme';
 import {IChooseAddressShopState} from 'views/app/reduxChooseAddressShop';
 import {ICartShipModel} from 'models';
-import Geolocation from 'react-native-geolocation-service';
-import Utilities from 'utils/Utilities';
-import MyStorage from 'utils/MyStorage';
-import {COORDINATE_USER} from 'common/KeyStorages';
 
 interface IProps extends IChooseAddressUserState, IChooseAddressShopState {
   shipping?: ICartShipModel;
@@ -38,114 +34,12 @@ class LocationHeader extends PureComponent<IProps> {
     if (shipping) {
       /* Giao tan noi */
       if (shipping.id === 5) {
-        await this.getLocation();
+        // await this.getLocation();
       } else {
         /* tu den lay */
         MyNavigator.navigate('AddressShop');
       }
     }
-  };
-
-  hasPermissionIOS = async () => {
-    const openSetting = () => {
-      Linking.openSettings().catch(() => {
-        Alert.alert('Unable to open settings');
-      });
-    };
-    const status = await Geolocation.requestAuthorization('whenInUse');
-
-    if (status === 'granted') {
-      return true;
-    }
-
-    if (status === 'denied') {
-      Alert.alert('Location permission denied');
-    }
-
-    if (status === 'disabled') {
-      Alert.alert('Vui lòng bật định vị GPS và cho phép DingTea sử dụng dịch vụ vị trí.', '', [
-        {text: 'Đi cài đặt', onPress: openSetting},
-        {text: 'Không cho phép', onPress: () => {}}
-      ]);
-    }
-
-    return false;
-  };
-
-  hasLocationPermission = async () => {
-    if (Platform.OS === 'ios') {
-      const hasPermission = await this.hasPermissionIOS();
-      return hasPermission;
-    }
-
-    if (Platform.OS === 'android' && Platform.Version < 23) {
-      return true;
-    }
-
-    const hasPermission = await PermissionsAndroid.check(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
-
-    if (hasPermission) {
-      return true;
-    }
-
-    const status = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
-
-    if (status === PermissionsAndroid.RESULTS.GRANTED) {
-      return true;
-    }
-
-    if (status === PermissionsAndroid.RESULTS.DENIED) {
-      Utilities.showToast('Location permission denied by user.');
-    } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-      Utilities.showToast('Location permission revoked by user.');
-    }
-
-    return false;
-  };
-
-  getLocation = async () => {
-    const hasPermission = await this.hasLocationPermission();
-
-    if (!hasPermission) {
-      return;
-    }
-
-    Geolocation.getCurrentPosition(
-      position => {
-        let coordinate = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
-        console.log(coordinate);
-        MyStorage.create(COORDINATE_USER, coordinate);
-        MyStaticLocal.setCoordinate(coordinate.latitude, coordinate.longitude);
-        if (MyStaticLocal.getUser()) {
-          MyNavigator.navigate('AddressUser');
-        } else {
-          MyNavigator.navigate('Login');
-        }
-      },
-      error => {
-        Alert.alert(`Code ${error.code}`, error.message);
-        console.log(error);
-      },
-      {
-        accuracy: {
-          android: 'high',
-          ios: 'best'
-        },
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 10000,
-        distanceFilter: 0,
-        forceRequestLocation: true,
-        showLocationDialog: true
-      }
-    );
   };
 
   render() {
